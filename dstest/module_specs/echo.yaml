@@ -9,9 +9,9 @@ inputs:
   default: ""
   description: input data frame
 - name: Column
-  type: Int
+  type: str
   connectable: False
-  default: 128
+  default: NewColumn
   description: Specify Column Name
 outputs:
 - name: Output data
