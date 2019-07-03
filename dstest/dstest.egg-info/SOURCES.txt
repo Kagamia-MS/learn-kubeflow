@@ -1,0 +1,12 @@
+setup.py
+dstest/__init__.py
+dstest/arg_opts.py
+dstest/echo.py
+dstest/entry.py
+dstest/eval.py
+dstest/preprocess.py
+dstest/train.py
+dstest.egg-info/PKG-INFO
+dstest.egg-info/SOURCES.txt
+dstest.egg-info/dependency_links.txt
+dstest.egg-info/top_level.txt

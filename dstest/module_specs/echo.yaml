@@ -1,0 +1,54 @@
+name: DS Echo
+family_id: ceba38fe-47d0-44b6-8101-981f5e92bae3
+category: Machine Learning\Preprocess
+description: DS Echo module
+inputs:
+- name: Input data
+  type: Dataset
+  connectable: True
+  default: ""
+  description: input data frame
+- name: Column
+  type: Int
+  connectable: False
+  default: 128
+  description: Specify Column Name
+outputs:
+- name: Output data
+  type: Dataset
+  connectable: True
+  description: The Output Data
+implementation:
+  container:
+    conda:
+      content:
+        name: project_environment
+        channels:
+        - defaults
+        dependencies:
+        - python=3.6.2
+        - pip:
+          - --extra-index-url=https://test.pypi.org/simple
+          - https://download.pytorch.org/whl/cu100/torch-1.1.0-cp36-cp36m-linux_x86_64.whl
+          - pytorch-pretrained-bert==0.6.1
+          - seqeval==0.0.5
+          - tqdm==4.31.1
+          - nltk==3.4
+          - torchvision==0.3.0
+          - pandas==0.24.1
+          - pyarrow==0.12.1
+          - git+https://github.com/wangchao1230/learn-kubeflow.git@dstest#subdirectory=dstest
+    invoking:
+      module: dstest.echo
+      class: EchoProcessor
+      func: 
+    command:
+    - python
+    - echo.py
+    args:
+    - --input_data_path
+    - inputValue: Input data
+    - --column
+    - inputValue: Column
+    - --out_data_path
+    - outputPath: Output data
