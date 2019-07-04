@@ -78,9 +78,7 @@ def read_parquet(data_path):
 def main():
   parser = echo_opts()
   args = parser.parse_args()
-  
-  logger.info((args)
-  
+  logger.info(args)
   try:
     df = read_parquet(args.input_data_path)
   except:
@@ -88,7 +86,6 @@ def main():
       'Height': [5.1, 6.2, 5.1, 5.2], 
       'Qualification': ['Msc', 'MA', 'Msc', 'Msc']} 
     df = pd.DataFrame(data)
-  
   
   logger.info(df)
 
