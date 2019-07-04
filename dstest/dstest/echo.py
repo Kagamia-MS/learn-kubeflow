@@ -78,8 +78,8 @@ def read_parquet(data_path):
 def main():
   parser = echo_opts()
   args = parser.parse_args()
-  print('-----')
-  print(args)
+  
+  logger.info((args)
   
   try:
     df = read_parquet(args.input_data_path)
@@ -89,8 +89,8 @@ def main():
       'Qualification': ['Msc', 'MA', 'Msc', 'Msc']} 
     df = pd.DataFrame(data)
   
-  print('-----')
-  print(df)
+  
+  logger.info(df)
 
   # Define a dictionary containing Students data 
   meta = {
@@ -99,8 +99,8 @@ def main():
 
   processor = EchoProcessor(meta)
   df1 = processor.run(df)
-  print('-----')
-  print(df1)
+  
+  logger.info(df1)
 
   df.to_parquet(fname=os.path.join(args.out_data_path, "feature.parquet"), engine='pyarrow')
 
