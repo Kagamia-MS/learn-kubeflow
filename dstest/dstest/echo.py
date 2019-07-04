@@ -26,6 +26,16 @@ def echo_opts():
                         default='Column',
                         help="column name to append"
                         )
+    parser.add_argument("--log-level",
+                        type=str,
+                        default='debug',
+                        help="debug"
+                        )
+    parser.add_argument("--command-file",
+                        type=str,
+                        default='command-file',
+                        help="command-file"
+                        )
     return parser
 
 
