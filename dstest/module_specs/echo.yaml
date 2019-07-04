@@ -38,6 +38,7 @@ implementation:
           - pandas==0.24.1
           - pyarrow==0.12.1
           - git+https://github.com/wangchao1230/learn-kubeflow.git@dstest1#subdirectory=dstest
+          - alghost==0.0.52
     invoking:
       module: dstest.echo
       class: EchoProcessor

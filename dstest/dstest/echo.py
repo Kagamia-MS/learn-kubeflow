@@ -4,6 +4,8 @@ import logging
 import os
 import pandas as pd
 import argparse
+from azureml.studio.modulehost.env import JesRuntimeEnv
+from azureml.studio.common.datatypes import DataTypes
 
 def echo_opts():
     parser = argparse.ArgumentParser()
@@ -105,7 +107,10 @@ def main():
     os.makedirs(args.out_data_path)
   else:
     logger.info(f"{args.out_data_path} exists")
+
   df.to_parquet(fname=os.path.join(args.out_data_path, "data.dataset.parquet"), engine='pyarrow')
+  env = JesRuntimeEnv()
+  env.save_data_type_to_file(DataTypes.from_extension(".dataset.parquet"), args.out_data_path)
 
 #python -m dstest.echo --input_data_path ../input --out_data_path ../output --column NewColumn
 #python echo.py --input_data_path ../input --out_data_path ../output --column NewColumn
