@@ -100,7 +100,12 @@ def main():
   
   logger.info(df1)
 
-  df.to_parquet(fname=os.path.join(args.out_data_path, "feature.parquet"), engine='pyarrow')
+  if not os.path.exists(args.out_data_path):
+    logger.info(f"{args.out_data_path} not exists")
+    os.makedirs(args.out_data_path)
+  else:
+    logger.info(f"{args.out_data_path} exists")
+  df.to_parquet(fname=os.path.join(args.out_data_path, "data.dataset.parquet"), engine='pyarrow')
 
 #python -m dstest.echo --input_data_path ../input --out_data_path ../output --column NewColumn
 #python echo.py --input_data_path ../input --out_data_path ../output --column NewColumn
