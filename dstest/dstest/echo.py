@@ -76,6 +76,7 @@ def read_parquet(data_path):
     return df
 
 def main():
+  logger.info('current version 0.0.3')
   parser = echo_opts()
   args = parser.parse_args()
   logger.info(args)
