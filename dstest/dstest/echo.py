@@ -78,6 +78,8 @@ def read_parquet(data_path):
 def main():
   parser = echo_opts()
   args = parser.parse_args()
+  print(args)
+  
   try:
     df = read_parquet(args.input_data_path)
   except:
