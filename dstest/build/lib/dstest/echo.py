@@ -26,6 +26,16 @@ def echo_opts():
                         default='Column',
                         help="column name to append"
                         )
+    parser.add_argument("--log-level",
+                        type=str,
+                        default='debug',
+                        help="debug"
+                        )
+    parser.add_argument("--command-file",
+                        type=str,
+                        default='command-file',
+                        help="command-file"
+                        )
     return parser
 
 
@@ -66,8 +76,10 @@ def read_parquet(data_path):
     return df
 
 def main():
+  logger.info('current version 0.0.3')
   parser = echo_opts()
   args = parser.parse_args()
+  logger.info(args)
   try:
     df = read_parquet(args.input_data_path)
   except:
@@ -75,7 +87,8 @@ def main():
       'Height': [5.1, 6.2, 5.1, 5.2], 
       'Qualification': ['Msc', 'MA', 'Msc', 'Msc']} 
     df = pd.DataFrame(data)
-  print(df)
+  
+  logger.info(df)
 
   # Define a dictionary containing Students data 
   meta = {
@@ -84,10 +97,12 @@ def main():
 
   processor = EchoProcessor(meta)
   df1 = processor.run(df)
-  print(df1)
+  
+  logger.info(df1)
 
   df.to_parquet(fname=os.path.join(args.out_data_path, "feature.parquet"), engine='pyarrow')
 
+#python -m dstest.echo --input_data_path ../input --out_data_path ../output --column NewColumn
 #python echo.py --input_data_path ../input --out_data_path ../output --column NewColumn
 if __name__ == "__main__":
   main()
