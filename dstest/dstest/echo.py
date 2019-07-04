@@ -78,6 +78,7 @@ def read_parquet(data_path):
 def main():
   parser = echo_opts()
   args = parser.parse_args()
+  print('-----')
   print(args)
   
   try:
@@ -87,6 +88,8 @@ def main():
       'Height': [5.1, 6.2, 5.1, 5.2], 
       'Qualification': ['Msc', 'MA', 'Msc', 'Msc']} 
     df = pd.DataFrame(data)
+  
+  print('-----')
   print(df)
 
   # Define a dictionary containing Students data 
@@ -96,10 +99,12 @@ def main():
 
   processor = EchoProcessor(meta)
   df1 = processor.run(df)
+  print('-----')
   print(df1)
 
   df.to_parquet(fname=os.path.join(args.out_data_path, "feature.parquet"), engine='pyarrow')
 
+#python -m dstest.echo --input_data_path ../input --out_data_path ../output --column NewColumn
 #python echo.py --input_data_path ../input --out_data_path ../output --column NewColumn
 if __name__ == "__main__":
   main()
