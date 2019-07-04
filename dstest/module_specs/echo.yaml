@@ -44,7 +44,8 @@ implementation:
       func: 
     command:
     - python
-    - echo.py
+    - -m
+    - dstest.echo
     args:
     - --input_data_path
     - inputValue: Input data
